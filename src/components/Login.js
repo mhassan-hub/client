@@ -69,7 +69,7 @@ export default function SignIn() {
   const classes = useStyles();
   const loginRequest = () => {
     axios
-      .post("http://localhost:3000/login", {
+      .post("https://to-the-moon-server.herokuapp.com/login", {
         user: { username: state.username, password: state.password },
       })
       .then((response) => {

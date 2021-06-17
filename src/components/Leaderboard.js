@@ -54,7 +54,7 @@ const StyledTableRow = withStyles((theme) => ({
 export default function Leaderboard() {
   const [highScores, setHighScores] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/scores").then((res) => {
+    axios.get("https://to-the-moon-server.herokuapp.com/scores").then((res) => {
       setHighScores(res.data.high_scores);
       console.log(res.data.high_scores);
       let rows = res.data.high_scores.length;

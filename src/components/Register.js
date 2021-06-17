@@ -64,7 +64,7 @@ export default function Register(props) {
 
   const register = () => {
     axios
-      .post("http://localhost:3000/users", {
+      .post("https://to-the-moon-server.herokuapp.com/users", {
         user: {
           username: state.username,
           email: state.email,

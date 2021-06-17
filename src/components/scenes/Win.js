@@ -24,7 +24,7 @@ export default class Win extends Phaser.Scene {
 
   submitScore() {
     axios
-      .post("http://localhost:3000/submit_score", {
+      .post("https://to-the-moon-server.herokuapp.com/submit_score", {
         id: sessionStorage.getItem("userID"),
         high_score: this.score,
       })
