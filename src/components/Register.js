@@ -75,12 +75,14 @@ export default function Register(props) {
       .then((response) => {
         console.log(response.data);
         if (response.data.status === 500) {
+          registerSuccess = false;
+          errorMsg = response.data.errors[0];
           setState({
-            error: true,
+            error: errorMsg,
             username: "",
             email: "",
             password: "",
-            password_confirmation: "",
+            passwordConfirmation: "",
           });
         } else {
           sessionStorage.setItem("userID", response.data.user.id);
@@ -121,6 +123,8 @@ export default function Register(props) {
               onChange={handleChange}
               autoFocus
               color="secondary"
+              error={state.error}
+              helperText={state.error}
             />
             <TextField
               variant="outlined"
@@ -134,6 +138,8 @@ export default function Register(props) {
               onChange={handleChange}
               autoFocus
               color="secondary"
+              error={state.error}
+              helperText={state.error}
             />
             <TextField
               variant="outlined"
@@ -147,6 +153,8 @@ export default function Register(props) {
               value={state.password}
               onChange={handleChange}
               color="secondary"
+              error={state.error}
+              helperText={state.error}
             />
             <TextField
               variant="outlined"
@@ -160,6 +168,8 @@ export default function Register(props) {
               value={state.passwordConfirmation}
               onChange={handleChange}
               color="secondary"
+              error={state.error}
+              helperText={state.error}
             />
 
             <Button

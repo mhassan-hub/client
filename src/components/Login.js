@@ -66,6 +66,8 @@ export default function SignIn() {
     error: "",
   });
 
+  let errorMsg = "";
+  let loginSuccess = true;
   const classes = useStyles();
   const loginRequest = () => {
     axios
@@ -78,8 +80,9 @@ export default function SignIn() {
           sessionStorage.setItem("username", response.data.user.username);
           history.push("/");
         } else {
-          console.log(response.data.errors[0]);
-          setState({ error: true, username: "", password: "" });
+          loginSuccess = false;
+          errorMsg = response.data.errors[0];
+          setState({ error: errorMsg, username: "", password: "" });
         }
       });
   };
@@ -114,7 +117,10 @@ export default function SignIn() {
               onChange={handleChange}
               color="secondary"
               autoFocus
+              error={state.error}
+              helperText={state.error}
             />
+
             <TextField
               variant="outlined"
               color="secondary"
@@ -127,6 +133,8 @@ export default function SignIn() {
               id="password"
               value={state.password}
               onChange={handleChange}
+              error={state.error}
+              helperText={state.error}
             />
             <Button
               fullWidth
